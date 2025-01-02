@@ -10,11 +10,11 @@ fn main() {
 
     let mode: &String = &args[1];
 
-    if mode == "--disable" { 
+    if mode == "--disable" || mode == "--d" { 
         change_light_level(0);
-    } else if mode == "--mid" { 
+    } else if mode == "--mid" || mode == "--m" { 
         change_light_level(1) 
-    } else if mode == "--high" { 
+    } else if mode == "--high" || mode == "--h"{ 
         change_light_level(2) 
     } else {
         eprintln!("The option {} is not supported!", mode);
