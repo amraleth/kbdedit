@@ -1,4 +1,4 @@
-use std::{env::{self, args}, process::Command};
+use std::{env::{args, set_current_dir}, process::Command};
 
 fn main() {
     let args: Vec<String> = args().collect();
@@ -22,10 +22,10 @@ fn main() {
 }
 
 fn change_light_level(level: i8) {
-    env::set_current_dir("/sys/class/leds/tpacpi::kbd_backlight/")
+    set_current_dir("/sys/class/leds/tpacpi::kbd_backlight/")
         .expect("Failed to change directory");
 
-    let command = format!("echo {} | sudo tee brightness", level);
+    let command: String = format!("echo {} | sudo tee brightness", level);
 
     let output = Command::new("sh")
         .arg("-c")
