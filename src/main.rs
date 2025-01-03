@@ -4,20 +4,17 @@ fn main() {
     let args: Vec<String> = args().collect();
 
     if args.len() != 2 {
-        eprintln!("Please provide either --disable, --mid or --high as an argument");
+        eprintln!("Please provide either --disable (--d), --mid (--m) or --high (--h) as an argument");
         return;
     }
 
-    let mode: &String = &args[1];
+    let light_mode: &String = &args[1];
 
-    if mode == "--disable" || mode == "--d" { 
-        change_light_level(0);
-    } else if mode == "--mid" || mode == "--m" { 
-        change_light_level(1) 
-    } else if mode == "--high" || mode == "--h"{ 
-        change_light_level(2) 
-    } else {
-        eprintln!("The option {} is not supported!", mode);
+    match light_mode.as_str() {
+        "--disable" | "--d" => change_light_level(0),
+        "--mid" | "--m" => change_light_level(1),
+        "--high" | "--h" => change_light_level(2),
+        _ => eprintln!("The option {} is not supported", light_mode)
     }
 }
 
