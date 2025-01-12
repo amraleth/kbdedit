@@ -31,8 +31,17 @@ fn change_light_level(level: i8) {
         .expect("Failed to execute command");
 
     if output.status.success() {
-        println!("Command executed successfully:\n{}", String::from_utf8_lossy(&output.stdout));
+        println!("Successfully changed to light level {}.", convert_id_to_str(level));
     } else {
         eprintln!("Command failed:\n{}", String::from_utf8_lossy(&output.stderr));
+    }
+}
+
+fn convert_id_to_str(level: i8) -> &'static str {
+    match level {
+        0 => return "disabled",
+        1 => return "medium",
+        2 => return "high",
+        _ => return "unknown"
     }
 }
