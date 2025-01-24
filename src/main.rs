@@ -1,5 +1,6 @@
 use std::{env::{args, set_current_dir}, process::Command};
 
+/// Main function
 fn main() {
     let args: Vec<String> = args().collect();
 
@@ -18,6 +19,10 @@ fn main() {
     }
 }
 
+/// Changes the light level of the keyboard by manipulating the backlight file
+///
+/// # Arguments
+/// * `level` - The light level, a value that can either be 0, 1 or 2
 fn change_light_level(level: i8) {
     set_current_dir("/sys/class/leds/tpacpi::kbd_backlight/")
         .expect("Failed to change directory");
@@ -37,6 +42,10 @@ fn change_light_level(level: i8) {
     }
 }
 
+/// Converts the level from a number to the string representation
+/// 
+/// # Arguments
+/// * `level` - The light level to convert
 fn convert_id_to_str(level: i8) -> &'static str {
     match level {
         0 => return "disabled",
